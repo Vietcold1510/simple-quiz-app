@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 // 2. Thêm dòng này để cho phép mọi nguồn (Frontend) kết nối vào
 const allowedOrigins = [
   'http://localhost:5173', // Cho phép Localhost để test
-  'simple-quiz-app-mocha.vercel.app', // LINK FRONTEND VERCEL (Sẽ điền sau khi deploy xong frontend)
+  'https://simple-quiz-app-mwo8.vercel.app', // LINK FRONTEND VERCEL (Sẽ điền sau khi deploy xong frontend)
 ];
 
 app.use(
