@@ -18,7 +18,24 @@ app.set('views', path.join(__dirname, 'views'));
 
 // --- KÍCH HOẠT CORS ---
 // 2. Thêm dòng này để cho phép mọi nguồn (Frontend) kết nối vào
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:5173', // Cho phép Localhost để test
+  'simple-quiz-app-mocha.vercel.app', // LINK FRONTEND VERCEL (Sẽ điền sau khi deploy xong frontend)
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Cho phép request không có origin (như Postman) hoặc nằm trong whitelist
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // Quan trọng nếu có cookie/token
+  })
+);
 
 app.use(express.json());
 
